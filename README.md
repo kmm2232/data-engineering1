@@ -39,7 +39,7 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 4. Run job *clickstream-transform-job*
 5. Confirm data appears in S3 bucket using the following command:
     ```s3://makuvaro-clickstream-curated/year=YYYY/month=MM/day=DD/*.parquet```
-6. Navigate tp AWS Console-> Glue-> Crawlers
+6. Navigate to AWS Console-> Glue-> Crawlers
 7. Run crawler *clickstream-curated-crawler*
 8. Navigate to Glue Data Catalog:
     Table appears with partition columns(year, month,day) with no *to_be_deleted* column 
@@ -64,7 +64,9 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 
 # Cleanup
 1. Empty all S3 buckets
-2. Run command:
+2. Navigate to AWS Console -> Athena-> Workgroups:
+       Delete *clickstream-analytics*
+4. Run command:
     *terraform destroy*
 
 # Trouble shooting
