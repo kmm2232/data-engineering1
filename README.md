@@ -32,9 +32,7 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 
 # Test Pipeline
 1. Send event to AWS firehose using command:
-    aws firehose put-record \
-  --delivery-stream-name clickstream-firehose \
-  --record "{\"Data\":\"$(printf '{\"user_id\":\"user67\",\"session_id\":\"s1\",\"page\":\"/home\",\"timestamp\":1732410000000,\"to_be_dropped\":\"Should_not_be_here\"}' | base64 | tr -d '\n')\"}"
+    ```aws firehose put-record --delivery-stream-name clickstream-firehose --record "{\\"Data\\":\\"$(printf '{\\"user_id\\":\\"user67\\",\\"session_id\\":\\"s1\\",\\"page\\":\\"/home\\",\\"timestamp\\":1732410000000,\\"to_be_dropped\\":\\"Should_not_be_here\\"}' | base64 | tr -d '\\n')\\"}"```
 2. After a few minutes confirm data appears in S3 bucket using the following command:
     *s3://makuvaro-clickstream-raw/year=YYYY/month=MM/day=DD/*.json.gz*
 3. Navigate to AWS Console-> Glue-> Jobs
