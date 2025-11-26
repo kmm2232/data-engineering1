@@ -24,21 +24,21 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 # Deployment Instructions
 1. Clone repository
 2. Open d1-assignment repository:
-    cd d1-assignment
+    ```cd d1-assignment```
 3. Spin up terraform
-    terraform init
-    terraform plan
-    terraform apply -> Types yes when prompted
+    ```terraform init```
+    ```terraform plan```
+    ```terraform apply``` -> Type yes when prompted
 
 # Test Pipeline
 1. Send event to AWS firehose using command:
-    ```aws firehose put-record --delivery-stream-name clickstream-firehose --record "{\\"Data\\":\\"$(printf '{\\"user_id\\":\\"user67\\",\\"session_id\\":\\"s1\\",\\"page\\":\\"/home\\",\\"timestamp\\":1732410000000,\\"to_be_dropped\\":\\"Should_not_be_here\\"}' | base64 | tr -d '\\n')\\"}"```
+    ```aws firehose put-record --delivery-stream-name clickstream-firehose --record "{\"Data\":\"$(printf '{\"user_id\":\"user67\",\"session_id\":\"s1\",\"page\":\"/home\",\"timestamp\":1732410000000,\"to_be_dropped\":\"Should_not_be_here\"}' | base64 | tr -d '\n')\"}"```
 2. After a few minutes confirm data appears in S3 bucket using the following command:
-    *s3://makuvaro-clickstream-raw/year=YYYY/month=MM/day=DD/*.json.gz*
+    ```s3://makuvaro-clickstream-raw/year=YYYY/month=MM/day=DD/*.json.gz```
 3. Navigate to AWS Console-> Glue-> Jobs
 4. Run job *clickstream-transform-job*
 5. Confirm data appears in S3 bucket using the following command:
-    *s3://makuvaro-clickstream-curated/year=YYYY/month=MM/day=DD/*.parquet*
+    ```s3://makuvaro-clickstream-curated/year=YYYY/month=MM/day=DD/*.parquet```
 6. Navigate tp AWS Console-> Glue-> Crawlers
 7. Run crawler *clickstream-curated-crawler*
 8. Navigate to Glue Data Catalog:
@@ -47,14 +47,14 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 10. Select Workgroup *clickstream-analytics*
 11. Select Database *clickstream_analytics_db*
 12. Run Sample Queries:
-    SELECT * FROM clickstream_curated LIMIT 10;
+    ```SELECT * FROM clickstream_curated LIMIT 10;```
 
-    SELECT year, month, day, COUNT(DISTINCT user_id)
+    ```SELECT year, month, day, COUNT(DISTINCT user_id)
     FROM clickstream_curated
     GROUP BY year, month, day
-    ORDER BY year, month, day;
+    ORDER BY year, month, day;```
 13. Confirm query results appear in S3 bucket:
-    *s3://makuvaro-clickstream-athena-results/*
+    ```s3://makuvaro-clickstream-athena-results/```
 
 # Cleanup
 1. Empty all S3 buckets
