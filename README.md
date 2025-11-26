@@ -48,8 +48,13 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 9. Navigate to AWS Console-> Athena
 10. Select Workgroup *clickstream-analytics*
 11. Select Database *clickstream_analytics_db*
-12. Run Queries:
+12. Run Sample Queries:
     SELECT * FROM clickstream_curated LIMIT 10;
+
+    SELECT year, month, day, COUNT(DISTINCT user_id)
+    FROM clickstream_curated
+    GROUP BY year, month, day
+    ORDER BY year, month, day;
 13. Confirm query results appear in S3 bucket:
     *s3://makuvaro-clickstream-athena-results/*
 
