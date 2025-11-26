@@ -49,10 +49,12 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 12. Run Sample Queries:
     ```SELECT * FROM clickstream_curated LIMIT 10;```
 
-    ```SELECT year, month, day, COUNT(DISTINCT user_id)
-    FROM clickstream_curated
-    GROUP BY year, month, day
-    ORDER BY year, month, day;```
+    ```
+        SELECT year, month, day, COUNT(DISTINCT user_id)
+        FROM clickstream_curated
+        GROUP BY year, month, day
+        ORDER BY year, month, day;
+    ```
 13. Confirm query results appear in S3 bucket:
     ```s3://makuvaro-clickstream-athena-results/```
 
