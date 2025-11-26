@@ -47,11 +47,15 @@ Repository contains a fully automated, serverless data pipeline built on AWS. Us
 10. Select Workgroup *clickstream-analytics*
 11. Select Database *clickstream_analytics_db*
 12. Run Sample Queries:
-    ```SELECT * FROM clickstream_curated LIMIT 10;```
+    ```
+    SELECT *
+    FROM clickstream_analytics_db.makuvaro_clickstream_curated
+    LIMIT 20;
+    ```
 
     ```
         SELECT year, month, day, COUNT(DISTINCT user_id)
-        FROM clickstream_curated
+        FROM clickstream_analytics_db.makuvaro_clickstream_curated
         GROUP BY year, month, day
         ORDER BY year, month, day;
     ```
