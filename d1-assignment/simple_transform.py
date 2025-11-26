@@ -27,7 +27,7 @@ curated_bucket = args["CURATED_BUCKET"]
 raw_path = f"s3://{raw_bucket}/year=*/month=*/day=*/"
 
 # Partition paths included so that Glue can write partitioned data in the formatted required
-curated_path = f"s3://{curated_bucket}/year=25/month=11/day=25/"
+curated_path = f"s3://{curated_bucket}/year=25/month=11/day=27/"    #Use desired date for partitioning
 
 #Testing print statements
 print("Reading from:", raw_path)
